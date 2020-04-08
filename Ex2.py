@@ -17,9 +17,6 @@ class BinaryTree :
 
 
 
-
-
-
 if __name__ == '__main__' :
     n1=Node(3)
     n2=Node(4,False,n1)
@@ -30,3 +27,5 @@ if __name__ == '__main__' :
     n7=Node(19,n6,n5)
     n8=Node(17,n7)
     nfin=Node(12,n8,n4)
+    Tree=BinaryTree(nfin)
+    Tree.size(nfin)
