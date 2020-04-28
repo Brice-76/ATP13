@@ -2,7 +2,6 @@ from Ex1 import Node
 
 
 
-
 class BinaryTree :
     def __init__(self,root):
         self.__root=root
@@ -15,42 +14,125 @@ class BinaryTree :
         else :
             return False
 
+    def size(self,node,a=0):
+        if node.get_left() == None :
+            return 1
+        if node.get_right() == None :
+            return 1
+        if node.get_left() != None :
+            a+=1
+            a+= self.size(node.get_left(),a)
+        if node.get_right() != None :
+            a+=1
+            a+=self.size(node.get_right(),a)
+        return a
+
+
+
+    def size_2(self,node):
+        if node == None :
+            return 0
+        if node.get_left() == None and node.get_right() == None :
+            return 1
+        else :
+            return 1+self.size(node.get_right())+self.size(node.get_left())π
+
+
+    def print_value(self,node):
+        if node == None :
+            return
+        if node.get_left() == None and node.get_right() ==None :
+            print(node)
+        else :
+            print(node)
+            self.print_value(node.get_left())
+            self.print_value(node.get_right())
+    def sum_value(self,node):
+        if node== None :
+            return 0
+        if node.get_left() == None and node.get_right() ==None :
+            return node.get_val()
+        else :
+            return node.get_val()+self.sum_value(node.get_right())+self.sum_value(node.get_left())
+
+    def numberLeaves(self, node) :
+        if node==None :
+            return 0
+        if node.get_left() == None and node.get_right() == None :
+            return 1
+        else :
+            return self.numberLeaves(node.get_right())+self.numberLeaves(node.get_left())
+
+    def numberInternalNodes(self, node) :
+        if node== None :
+            return 0
+        if node.get_left() == None and node.get_right() == None :
+            return 0
+        else :
+            return 1+self.numberInternalNodes(node.get_right())+self.numberInternalNodes(node.get_left())
+
+    def height(self, node) :
+        if node.get_left() ==None and node.get_right() == None :
+            return 1
+
+
+
+
+        else :
+            a=self.height(node.get_left())
+            b=self.height(node.get_right())
+            if a>b :
+                return a
+            else :
+                return b
+
+
+
+
+
+
+
 
 if  __name__ =='__main__' :
 # root
     N1=Node(12)
     Tree=BinaryTree(N1)
-# première ligne
     N2=Node(5)
     N3=Node(17)
     N1.set_left(N2)
     N1.set_right(N3)
-# deuxieme ligne
     N4=Node(4)
     N5=Node(6)
     N6=Node(19)
     N2.set_left(N4)
     N2.set_right(N5)
     N3.set_right(N6)
-# troisieme ligne
     N7=Node(3)
     N8=Node(18)
     N9=Node(21)
     N4.set_left(N7)
-    N6.set_right(N8)
+    N6.set_left(N8)
     N6.set_right(N9)
 
+
+#
 # if __name__ == '__main__' : # a faire avec des set...
-#     n1=Node(3)
-#     n2=Node(4,None,n1)
-#     n3=Node(6)
-#     n4=Node(5,n3,n2)
-#     n5=Node(18)
-#     n6=Node(21)
-#     n7=Node(19,n6,n5)
-#     n8=Node(17,n7)
-#     nfin=Node(12,n8,n4)
-#
-#
-#     Tree=BinaryTree(nfin)
-#     Tree.size(nfin)
+#     n6 = Node(6,None,None)
+#     n7 = Node(21,None,None)
+#     n8 = Node(18,None,None)
+#     n9 = Node(3,None,None)
+#     n5 = Node(4,None,n9)
+#     n4 = Node(19,n7,n8)
+#     n3 = Node(17,n4,None)
+#     n2 = Node(5,n6,n5)
+#     n1 = Node(12, n3, n2)
+
+
+
+    Tree=BinaryTree(N1)
+    print(Tree.size(N1))
+    print(Tree.size_2(N1))
+    Tree.print_value(N1)
+    print(Tree.sum_value(N1))
+    print(Tree.numberLeaves(N1))
+    print(Tree.numberInternalNodes(N1))
