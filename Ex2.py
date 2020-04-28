@@ -35,7 +35,12 @@ class BinaryTree :
         if node.get_left() == None and node.get_right() == None :
             return 1
         else :
-            return 1+self.size(node.get_right())+self.size(node.get_left())π
+            return 1+self.size(node.get_right())+self.size(node.get_left())
+    def size_3(self, node):
+        if node is None:
+            return 0
+        else:
+            return self.size(node.get_left()) + 1 + self.size(node.get_right())
 
 
     def print_value(self,node):
@@ -94,7 +99,6 @@ class BinaryTree :
 
 
 if  __name__ =='__main__' :
-# root
     N1=Node(12)
     Tree=BinaryTree(N1)
     N2=Node(5)
@@ -132,6 +136,7 @@ if  __name__ =='__main__' :
     Tree=BinaryTree(N1)
     print(Tree.size(N1))
     print(Tree.size_2(N1))
+    print(Tree.size_3(N1))
     Tree.print_value(N1)
     print(Tree.sum_value(N1))
     print(Tree.numberLeaves(N1))
