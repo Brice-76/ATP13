@@ -14,29 +14,15 @@ class BinaryTree :
         else :
             return False
 
-    def size(self,node,a=0):
-        if node.get_left() == None :
-            return 1
-        if node.get_right() == None :
-            return 1
-        if node.get_left() != None :
-            a+=1
-            a+= self.size(node.get_left(),a)
-        if node.get_right() != None :
-            a+=1
-            a+=self.size(node.get_right(),a)
-        return a
 
-
-
-    def size_2(self,node):
+    def size(self,node):
         if node == None :
             return 0
         if node.get_left() == None and node.get_right() == None :
             return 1
         else :
             return 1+self.size(node.get_right())+self.size(node.get_left())
-    def size_3(self, node):
+    def size_2(self, node):# professeur
         if node is None:
             return 0
         else:
@@ -52,6 +38,11 @@ class BinaryTree :
             print(node)
             self.print_value(node.get_left())
             self.print_value(node.get_right())
+    def print_value_2(self,node):
+        if node is None:
+            return " "
+        else:
+            return self.print_value_2(node.get_left()) + self.print_value_2(node.get_right())
     def sum_value(self,node):
         if node== None :
             return 0
@@ -77,19 +68,33 @@ class BinaryTree :
             return 1+self.numberInternalNodes(node.get_right())+self.numberInternalNodes(node.get_left())
 
     def height(self, node) :
-        if node.get_left() ==None and node.get_right() == None :
-            return 1
-
-
-
-
+        if node is None :
+            return 0
         else :
-            a=self.height(node.get_left())
-            b=self.height(node.get_right())
-            if a>b :
-                return a
-            else :
-                return b
+            gauche=1+self.height(node.get_right())
+            droite=1+self.height(node.get_left())
+            return max(gauche,droite)
+
+    def belongs(self, node, val) :
+        if node is None :
+            return False
+        if int(node.get_val() )== int(val) :
+            print('True','La valeur est présente')
+            return True
+        else :
+            self.belongs(node.get_right(),val)
+            self.belongs(node.get_left(),val)
+
+    def descendants(self, node, val) :#qui affiche les descendants d'un noeud ayant la valeur val
+        if node is None :
+            return False
+        if int(node.get_val() )== int(val) :
+            print('les descendants sont : ',node.get_right(),node.get_left())
+        else :
+            self.descendants(node.get_right(),val)
+            self.descendants(node.get_left(),val)
+
+
 
 
 
@@ -117,6 +122,9 @@ if  __name__ =='__main__' :
     N4.set_left(N7)
     N6.set_left(N8)
     N6.set_right(N9)
+    N10=Node(1)
+    #N9.set_right(N10)
+
 
 
 #
@@ -136,8 +144,12 @@ if  __name__ =='__main__' :
     Tree=BinaryTree(N1)
     print(Tree.size(N1))
     print(Tree.size_2(N1))
-    print(Tree.size_3(N1))
     Tree.print_value(N1)
+    print(Tree.print_value_2(N1))
     print(Tree.sum_value(N1))
     print(Tree.numberLeaves(N1))
     print(Tree.numberInternalNodes(N1))
+    Tree.belongs(N1,21)
+    print(Tree.height(N1))
+    Tree.descendants(N1,19)
+
