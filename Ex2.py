@@ -88,19 +88,21 @@ class BinaryTree :
                 return True
 
 
-    def ancestors(self, node, val) : #qui affiche les antécédents d'un noeud ayant la valeur val
-        if node is None :
+    def ancestors(self, node, val, lst=[]) : #qui affiche les antécédents d'un noeud ayant la valeur val
+        if node == None :
             return
-        if node.get_right() == None and node.get_left() == None :
-            return
-
-        if ((node.get_right()).get_val()) == int(val) or ((node.get_left()).get_val()) == int(val) :
-            print('l antecedent est :',node)
-            return
-
         else :
-            self.ancestors(node.get_right(),val)
+            lst.append(node.get_val())
             self.ancestors(node.get_left(),val)
+            self.ancestors(node.get_right(),val)
+            if val in lst :
+                return
+    def ancestors_2(self,node,val,lst=[]):
+
+
+
+
+
 
     def descendants(self, node, val) :#qui affiche les descendants d'un noeud ayant la valeur val
         if node is None :
@@ -159,15 +161,15 @@ if  __name__ =='__main__' :
 
 
     Tree=BinaryTree(N1)
-    print(Tree.size(N1))
-    print(Tree.size_2(N1))
+    #print(Tree.size(N1))
+    #print(Tree.size_2(N1))
     #Tree.print_value(N1)
     #print(Tree.print_value_2(N1))
-    print(Tree.sum_value(N1))
-    print(Tree.numberLeaves(N1))
-    print(Tree.numberInternalNodes(N1))
-    print(Tree.belongs(N1,21))
-    print(Tree.height(N1))
-    #(Tree.ancestors(N1,19))
+    #print(Tree.sum_value(N1))
+    #print(Tree.numberLeaves(N1))
+    #print(Tree.numberInternalNodes(N1))
+    #print(Tree.belongs(N1,21))
+    #print(Tree.height(N1))
+    print(Tree.ancestors(N1,19))
     Tree.descendants(N1,19)
 

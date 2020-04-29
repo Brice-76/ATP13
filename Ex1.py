@@ -16,6 +16,8 @@ class Node :
         self.__right=right
     def set_left(self,left):
         self.__left=left
+    def gauche_droite(self):
+        return self.__right,self.left
     def __str__(self):
         return 'node val : '+str(self.get_val())
 
