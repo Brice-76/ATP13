@@ -84,6 +84,16 @@ class BinaryTree :
         else :
             self.belongs(node.get_right(),val)
             self.belongs(node.get_left(),val)
+    def ancestors(self, node, val) : #qui affiche les antécédents d'un noeud ayant la valeur val
+        if node is None :
+            return
+        if ((node.get_right()).get_val()) == int(val) or ((node.get_left()).get_val()) == int(val) :
+            print('l antecedent est :',node)
+            return
+
+        else :
+            self.ancestors(node.get_right(),val)
+            self.ancestors(node.get_left(),val)
 
     def descendants(self, node, val) :#qui affiche les descendants d'un noeud ayant la valeur val
         if node is None :
@@ -151,5 +161,6 @@ if  __name__ =='__main__' :
     print(Tree.numberInternalNodes(N1))
     Tree.belongs(N1,21)
     print(Tree.height(N1))
+    (Tree.ancestors(N1,19))
     Tree.descendants(N1,19)
 
